@@ -23,7 +23,11 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="{% url 'login' %}">Logout</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesi&oacute;n</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar Sesi&oacute;n</a></li>
+                        {% endif %}
                     </ul>
                 </li>
             </ul>

@@ -11,10 +11,12 @@
                                 <div class="sb-nav-link-icon"><i></i></div>
                                 Introducci&oacute;n
                             </a>
+                            {% if user.is_authenticated %}
                             <a class="nav-link {% if request.path == '/prediccion/' %}active{% endif %}" href="{% url 'prediccion' %}">
                                 <div class="sb-nav-link-icon"><i></i></div>
                                 Predicci&oacute;n
                             </a>
+                        {% endif %}
                             <a class="nav-link {% if request.path == '/explicatividad/' %}active{% endif %}" href="{% url 'explicatividad' %}">
                                 <div class="sb-nav-link-icon"><i></i></div>
                                 Explicatividad
@@ -22,8 +24,12 @@
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
+                        <div class="small">Has iniciado sesion como:</div>
+                        {% if user.is_authenticated %}
+                        {{ user.username }}
+                        {% else %}
                         Invitado
+                        {% endif %}
                     </div>
                 </nav>
             </div>
