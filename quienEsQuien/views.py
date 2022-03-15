@@ -56,8 +56,11 @@ def register(request):
         form = UserResgisterForm(request.POST)
         if form.is_valid():
             form.save()
-            #username = form.cleaned_data['username']
-            #messages.success(request, f'Usuario {username} creado')
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(request, username=username, password=password)
+            login(request, user)
+            messages.success(request, ("Usuario creado"))
             return redirect('introduccion')
     else:
         form = UserResgisterForm
