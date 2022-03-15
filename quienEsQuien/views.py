@@ -63,8 +63,9 @@ def register(request):
             messages.success(request, ("Usuario creado"))
             return redirect('introduccion')
     else:
-        form = UserResgisterForm
-        return render(request, 'register.html', {'form': form})
+        form = UserResgisterForm()
+
+    return render(request, 'register.html',{"form":form})
 
 def password(request):
     return render(request, 'password.html')

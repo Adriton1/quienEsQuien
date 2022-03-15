@@ -15,6 +15,11 @@
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
+                    {% if form.errors %}
+                        <div class="alert alert-danger" role="alert"> <!-- podemos poner style="text-align: center" para dejarlo en el centro-->
+                          Ha habido un error
+                        </div>
+                    {% endif %}
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
