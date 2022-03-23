@@ -9,6 +9,8 @@ from django.shortcuts import render, redirect
 from .forms import UserResgisterForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from DjangoTFG import settings
+from django.core.mail import send_mail
 from .models import *
 
 prueba="""<html>
@@ -68,6 +70,13 @@ def register(request):
     return render(request, 'register.html',{"form":form})
 
 def password(request):
+    if request.method == 'POST':
+        subject = 'Cambio de contraseña'
+        menssage = 'Para cambiar de contraseña accede al siguiente enlace:  http://127.0.0.1:8000/register/'
+        email_from = settings.EMAIL_HOST_USER
+        email_to = request.POST['email']
+        send_mail(subject, menssage, email_from, [email_to])
+        return redirect('login')
     return render(request, 'password.html')
 
 def loginError(request):
