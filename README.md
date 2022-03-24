@@ -20,3 +20,7 @@ https://trello.com/b/Q4gxKaU5/tfg
 ### ALGORITHM:
 The app will be able to find out which user is typing once the prediction has been made. 3 base cases must be loaded so that, the first user to register in the app can carry out the prediction test with more cases analyzed apart from their own.
 
+
+## PHASE 1
+![Register page](/Phase1Images/Registro.png "Register")
+In this page the users will be able to create a new account if they don't already have one.
