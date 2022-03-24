@@ -47,5 +47,5 @@ This page display the information related to the algorithm: How does it work? Ho
 ![Control panel page](/Phase1Images/Panel_de_Control.png "Control panel")
 This page display the information related to the control panel: Users and User prediction's data
 
-![User control panel page](/Phase1Images/Panel_de_Control Usuarios.png "User control panel")
+![User control panel page](/Phase1Images/Panel_de_Control_Usuarios.png "User control panel")
 This page display the information related to the users. Admins can add, modify, and delete users from this page. They can also filter by data or search users by their name or email.
