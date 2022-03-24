@@ -22,5 +22,39 @@ The app will be able to find out which user is typing once the prediction has be
 
 
 ## PHASE 1
+
 ![Register page](/Phase1Images/Registro.png "Register")
 In this page the users will be able to create a new account if they don't already have one.
+
+![Login page](/Phase1Images/Login.png "Login")
+This is the login where user will be able to log in to the web application if they have an existing account.
+
+![LoginError page](/Phase1Images/LoginError.png "LoginError")
+If something goes wrong with the login, the user will be redirected to this page and try again the login.
+
+![Forgotten password page](/Phase1Images/Restaurar Contraseña.png "Password Recovery Page")
+If the users forget their passwords, they will be redirected to this page to get an email to change their password.
+
+![Introduction page](/Phase1Images/Introducción.png "Introduction")
+This page display the information related to the application: Application developer, algorithm developer and what programming language has been used to develop it.
+
+![Prediction page](/Phase1Images/Predicción.png "Prediction")
+This page display a test text, the user must write the same text in the space below. The algorithm will analyze your writing: speed, errors, time it takes to perform the test, etc.
+
+![Explainability page](/Phase1Images/Explicatividad.png "Explainability")
+This page display the information related to the algorithm: How does it work? How does the algorithm analyze the data that is provided?...
+
+![Hamburger menu page](/Phase1Images/Menu Hamburguesa.gif "Hamburger menu")
+The App will use a Hamburger menu to show and hide the navbar.
+
+![Dropdown page](/Phase1Images/Menu Desplegable.gif "Dropdown")
+The App will use a Dropdown to show and hide the login and logout option.
+
+![Control panel page](/Phase1Images/Panel de Control.png "Control panel")
+This page display the information related to the control panel: Users and User prediction's data
+
+![User control panel page](/Phase1Images/Panel de Control Usuarios.png "User control panel")
+This page display the information related to the users. Admins can add, modify, and delete users from this page. They can also filter by data or search users by their name or email.
+ 
+![Filter and data search page](/Phase1Images/Filtro y Busqueda panel de Control.gif "Filter and data search")
+As I said in the last picture, admins can filter by data or search users.
