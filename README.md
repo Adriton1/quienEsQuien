@@ -44,17 +44,8 @@ This page display a test text, the user must write the same text in the space be
 ![Explainability page](/Phase1Images/Explicatividad.png "Explainability")
 This page display the information related to the algorithm: How does it work? How does the algorithm analyze the data that is provided?...
 
-![Hamburger menu page](/Phase1Images/Menu Hamburguesa.gif "Hamburger menu")
-The App will use a Hamburger menu to show and hide the navbar.
-
-![Dropdown page](/Phase1Images/Menu Desplegable.gif "Dropdown")
-The App will use a Dropdown to show and hide the login and logout option.
-
 ![Control panel page](/Phase1Images/Panel de Control.png "Control panel")
 This page display the information related to the control panel: Users and User prediction's data
 
 ![User control panel page](/Phase1Images/Panel de Control Usuarios.png "User control panel")
 This page display the information related to the users. Admins can add, modify, and delete users from this page. They can also filter by data or search users by their name or email.
- 
-![Filter and data search page](/Phase1Images/Filtro y Busqueda panel de Control.gif "Filter and data search")
-As I said in the last picture, admins can filter by data or search users.
