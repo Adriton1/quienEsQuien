@@ -10,7 +10,7 @@ var tildeKeyUp = false;
 var tildeKeyDown = false;
 var tildeKeyPress = false;
 var primeraLetra = false;
-var botonInicio = false;
+const nombreUsuario = document.getElementById('nombreUsuario');
 
 const segundo = 1000;
 var tiempos = [[], [], []]
@@ -130,9 +130,12 @@ function iniciarPrueba() {
             errores --;
         }
 
-
         console.log(evento.key);
-        console.log(tiempos);
+
+        if (contadorKeyUp === texto.length){
+            console.log(nombreUsuario.textContent);
+            console.log(tiempos);
+        }
 
     // Cuando ha escrito toda la cadena hacer funcional el boton para enviar o enviar la informacion ya (mejor la 2 opcion)
     });
