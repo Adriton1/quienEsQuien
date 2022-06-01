@@ -70,19 +70,33 @@ In this phase, some templates have been modified, although some of them have nev
 
 On the other hand, the templates that have undergone some modification will be:
 
-![Register page](/Phase2Images/Requisitos_Crear_Cuenta.png "Requirements") ![Register page](/Phase2Images/Sugerencia_Contraseña.png "Suggestions")
+![Register page](/Phase2Images/Requisitos_Crear_Cuenta.png "Requirements") 
+![Register page](/Phase2Images/Sugerencia_Contraseña.png "Suggestions")
 As can be seen, the form to be filled in has been visually modified. One of the aspects to highlight is that the user must comply with certain requirements when creating the password (do not use the user name in the password, it must have a minimum length, etc.).
 
 ![Login page](/Phase2Images/Acceso_Invitado.png "Login as a guest")
+
 Added the option to log in as a guest, now, you can browse the site without being registered (although you will not be able to access some features that will be available to registered users).
+
+![Login page](/Phase2Images/Sesion_Usuario.png "Username")
+![Login page](/Phase2Images/Sesion_Invitado.png "Username Invitado")
 
 Also, we will be able to see in the lower left corner the name of the user who has just logged in. If you are logged in as a guest, you will see the word "Invitado".
 
+![Login page](/Phase2Images/Mensaje_Inicio.png "Login message")
+![Login page](/Phase2Images/Mensaje_Sesion_Cerrada.png "logout message")
+![Login page](/Phase2Images/Video_Inicio_Cerrar_Sesion.gif "login-logout message video")
+
 Finally, every time we log in or log out, a message will be displayed indicating this action.
 
-![Prediction page]
-We have added a text (which the user must type) and an empty text area that will be filled in letter by letter each time the user types correctly.In addition, a button has been added which, once clicked, will start the test.
+![Prediction page](/Phase2Images/Prediccion.png "Prediction page")
+
+We have added a text (which the user must type) and an empty text area that will be filled in letter by letter each time the user types correctly. In addition, a button has been added which, once clicked, will start the test.
+
+![Prediction page](/Phase2Images/Escritura_Prediccion.gif "Prediction page")
 
 A proprietary code has been designed using the functions keyup, keydown and keypress in JavaScript. These functions are able to capture an event (in this case, the keys of our keyboard). Once the event is captured, we will be able to access its timestamp attribute. This attribute will return the time at which the key has been pressed. In our case, the time will be shown in seconds and will start counting at the moment when the "Iniciar prueba" button is pressed.
+
+![Prediction page](/Phase2Images/Consola_Prediccion.gif "Prediction page")
 
 Once we have typed the text completely, the test will end. In this version of the web application, we will be able to see how many mistakes we have made and the time we have taken to write both the text and each letter.
