@@ -69,10 +69,11 @@ In this phase, some templates have been modified, although some of them have nev
 - **Control panel:** 
 
 On the other hand, the templates that have undergone some modification will be:
-![Register page]
+
+![Register page](/Phase2Images/Requisitos_Crear_Cuenta.png "Requirements") ![Register page](/Phase2Images/Sugerencia_Contraseña.png "Suggestions")
 As can be seen, the form to be filled in has been visually modified. One of the aspects to highlight is that the user must comply with certain requirements when creating the password (do not use the user name in the password, it must have a minimum length, etc.).
 
-![Login page]
+![Login page](/Phase2Images/Acceso_Invitado.png "Login as a guest")
 Added the option to log in as a guest, now, you can browse the site without being registered (although you will not be able to access some features that will be available to registered users).
 
 Also, we will be able to see in the lower left corner the name of the user who has just logged in. If you are logged in as a guest, you will see the word "Invitado".
