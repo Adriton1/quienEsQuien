@@ -61,3 +61,27 @@ This page display the information related to the users. Admins can add, modify, 
 ![Filter and data search page](Phase1Images/Filtro_y_Busqueda_panel_de_Control.gif "Filter and data search")
 
 As I said in the last picture, admins can filter by data or search users.
+
+## PHASE 2
+In this phase, some templates have been modified, although some of them have never been modified, such as:
+- **Forgotten password page:** 
+- **Login Error:** 
+- **Control panel:** 
+
+On the other hand, the templates that have undergone some modification will be:
+![Register page]
+As can be seen, the form to be filled in has been visually modified. One of the aspects to highlight is that the user must comply with certain requirements when creating the password (do not use the user name in the password, it must have a minimum length, etc.).
+
+![Login page]
+Added the option to log in as a guest, now, you can browse the site without being registered (although you will not be able to access some features that will be available to registered users).
+
+Also, we will be able to see in the lower left corner the name of the user who has just logged in. If you are logged in as a guest, you will see the word "Invitado".
+
+Finally, every time we log in or log out, a message will be displayed indicating this action.
+
+![Prediction page]
+We have added a text (which the user must type) and an empty text area that will be filled in letter by letter each time the user types correctly.In addition, a button has been added which, once clicked, will start the test.
+
+A proprietary code has been designed using the functions keyup, keydown and keypress in JavaScript. These functions are able to capture an event (in this case, the keys of our keyboard). Once the event is captured, we will be able to access its timestamp attribute. This attribute will return the time at which the key has been pressed. In our case, the time will be shown in seconds and will start counting at the moment when the "Iniciar prueba" button is pressed.
+
+Once we have typed the text completely, the test will end. In this version of the web application, we will be able to see how many mistakes we have made and the time we have taken to write both the text and each letter.
