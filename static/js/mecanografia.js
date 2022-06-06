@@ -1,3 +1,29 @@
+// import { createRequire } from '/module';
+// const require = createRequire(import.meta.url);
+// const {Pool} = require('pg');
+// const pool = new Pool({
+//   user: 'postgres',
+//   host: '127.0.0.1',
+//   database: 'quienesquien',
+//   password: 'manager',
+//   port: 5432,
+// });
+//
+// const insertData = async () => {
+//     const text = 'INSERT INTO prueba2 (nombre, tiempo1, tiempo2, tiempo3, errores) VALUES ($1, $2, $3, $4, $5)';
+//     //const values = [nombreUsuario.textContent, tiempos, errores];
+//     const values = ["prueba", [5.123, 9.632], [5.258, 9.45], [5.632, 10.325], 4];
+//
+//     const res = await pool.query(text, values);
+//     console.log(res);
+//     pool.end();
+// }
+//
+//
+// insertData();  s
+
+
+
 //var texto = "En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que viv´ia un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres cuartas partes de su hacienda."
 //var texto = "Hola buenas tardes.";
 var texto = "Adrián";
