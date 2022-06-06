@@ -108,7 +108,7 @@ To run the app we will have to dockerized it. Follow the next steps to do it.
 - 1: install docker desktop and docker compose [click here](https://desktop.docker.com/win/stable/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
 - 2: download project in GitHub [click here](https://github.com/Adriton1/quienEsQuien/archive/refs/heads/master.zip)
 - 3: Open terminal
-- 4: Get into the Backend directory ```cd C:\{your download path}```
+- 4: Get into the Dowload directory ```cd C:\{your download path}\quienEsQuien-master```
 - 5: Build image in docker ```docker-compose up --build ```
 - 6: Then we will have to run the app and migrate the ddbb ```docker-compose run web python3 manage.py migrate```
 - 7: Type in the browser https://localhost:8000/ and it will show the login template.
