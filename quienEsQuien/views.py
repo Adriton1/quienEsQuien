@@ -1,6 +1,9 @@
 # Create your views here.
 from django.http import  HttpResponse
 import datetime
+from django.http import JsonResponse
+import psycopg2
+import json
 from quienEsQuien.models import Usuarios
 from django.template import loader
 # doc_externo = loader.get_template('base.html')
@@ -12,6 +15,28 @@ from django.contrib import messages
 from DjangoTFG import settings
 from django.core.mail import send_mail
 from .models import *
+
+# Conexion a la bbdd
+# try:
+#     connection = psycopg2.connect(
+#         host='localhost',
+#         user='postgres',
+#         password='manager',
+#         database='quienesquien'
+#     )
+#     print("Conexion con la base de datos exitosa")
+#
+#     cursor = connection.cursor()
+#     cursor.execute("SELECT version()")
+#     row = cursor.fetchone()
+#     print(row)
+#     cursor.execute("SELECT * from prueba3")
+#     rows = cursor.fetchall()
+#     for row in rows:
+#         print(row)
+#     #Ejemplo para insertar en la tabla de datos insert into pruebasUsuarios values('Adri', ROW('{"2.35798", "5.63485"}', '{"2.35798", "5.63485"}', '{"2.35798", "5.63485"}'))
+# except Exception as ex:
+#     print(ex)
 
 prueba="""<html>
 <body>
@@ -25,8 +50,54 @@ Hola Mundo
 def left(request):
     currentUser = request.user
     return render(request, 'left-navbar/left.html', {currentUser: "user"})
+
 def prediccion(request): #primera vista, debemos linkarla a una url en urls.py
     return render(request, 'partials/Prediccion.html',{})
+
+def saveData(request):
+    if request.method == 'POST':
+        userData = request.POST['userData']
+        csrfmiddlewaretoken = request.POST['csrfmiddlewaretoken']
+        tiemposData = request.POST['tiemposData']
+        result = json.loads(tiemposData)
+        print(userData)
+        print(csrfmiddlewaretoken)
+        contador = 0
+        tiempoKeyDown = []
+        tiempoKeyPress = []
+        tiempoKeyUp = []
+        for tiempo in result:
+            contAux = 0
+            for i in tiempo:
+                contAux += 1
+                if (contador == 0):
+                    tiempoKeyDown.append(float(i))
+
+                if contador == 1:
+                    tiempoKeyPress.append(float(i))
+
+                if contador == 2:
+                    tiempoKeyUp.append(float(i))
+
+            contador += 1
+
+        tiempos = [tiempoKeyDown, tiempoKeyPress, tiempoKeyUp]
+        try:
+            connection = psycopg2.connect(
+                host='localhost',
+                user='postgres',
+                password='manager',
+                database='quienesquien'
+            )
+            print("Conexion con la base de datos exitosa")
+            cursor = connection.cursor()
+            query = "INSERT INTO pruebasUsuarios values ('{"+userData+"}', %s)"
+            cursor.execute("SELECT * FROM pruebasUsuarios")
+            cursor.execute(query, (tiempos,))
+            connection.commit()
+        except Exception as ex:
+            print(ex)
+        return JsonResponse({"message": "Recieve..."})
 
 def introduccion(request): #primera vista, debemos linkarla a una url en urls.py
     return render(request, 'partials/Introduccion.html', {})
