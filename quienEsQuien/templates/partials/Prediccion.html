@@ -28,7 +28,12 @@
         </div>
     </div>
     <br>
-    <button id="botonPrueba" onclick="iniciarPrueba()" style="margin-left: 71%; float: left" type="button" class="btn btn-success">Iniciar Prueba</button>
-
+    <div>
+        <form action="#" id="saveData">
+        {% csrf_token %}
+            <button id="botonPrueba" onclick="iniciarPrueba()" style="margin-left: 71%; float: left" type="button" class="btn btn-success">Iniciar Prueba</button>
+            <input onclick="finalizarPrueba()" type="submit" value="Enviar">
+        </form>
+    </div>
 
 {% endblock %}
