@@ -111,5 +111,12 @@ To run the app we will have to dockerized it. Follow the next steps to do it.
 - 4: Get into the Dowload directory ```cd C:\{your download path}\quienEsQuien-master```
 - 5: Build image in docker ```docker-compose up --build ```
 - 6: Then we will have to run the app and migrate the ddbb ```docker-compose run web python3 manage.py migrate```
-- 7: Type in the browser https://localhost:8000/ and it will show the login template.
+- 7: Type in the browser [http://localhost:8000/](http://localhost:8000/) and it will show the login template.
+- 8: You must make sure you have these 2 containers active in Docker-Desktop:
+
+![Docker-containers](/DockerImages/Contenedores_activos.PNG "Register")
+
+- 9: You must make sure you have these 2 images active in Docker-Desktop:
+
+![Docker-images](/DockerImages/Imagenes_Uso.PNG "Register")
 
