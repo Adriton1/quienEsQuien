@@ -10,7 +10,8 @@ var tildeKeyUp = false;
 var tildeKeyDown = false;
 var tildeKeyPress = false;
 var primeraLetra = false;
-const nombreUsuario = document.getElementById('nombreUsuario');
+const idNombre = document.getElementById('nombreUsuario');
+var username =  idNombre.textContent.replace(/\s+/g, '')
 
 const segundo = 1000;
 var tiempos = [[], [], []]
@@ -125,3 +126,22 @@ function iniciarPrueba() {
     });
 
 }
+
+function finalizarPrueba() {
+    $.ajax({
+        method: "POST",
+        url: "/saveData",
+        data:{
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            userData: username,
+            tiemposData: JSON.stringify(tiempos)
+        }
+    })
+        .done(function (response){
+            console.log(response)
+        })
+        .fail(function (response){
+            console.log(response)
+        })
+}
+

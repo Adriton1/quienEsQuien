@@ -1,6 +1,6 @@
 from django.urls import path
 
-from quienEsQuien.views import introduccion, prediccion, explicatividad, login_user, register, password, loginError, logout_user #importamos la vista que esta en el archivo views de mi proyecto DjangoTFG
+from quienEsQuien.views import introduccion, prediccion, explicatividad, login_user, register, password, loginError, logout_user, saveData #importamos la vista que esta en el archivo views de mi proyecto DjangoTFG
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -13,6 +13,7 @@ urlpatterns = [
     path('register/', register, name = 'register'),
     path('password/', password, name = 'password'),
     path('loginError/', loginError, name = 'loginError'),
+    path('saveData', saveData)
 
 ]
 
