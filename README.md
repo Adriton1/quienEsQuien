@@ -109,14 +109,11 @@ To run the app we will have to dockerized it. Follow the next steps to do it.
 - 2: download project in GitHub [click here](https://github.com/Adriton1/quienEsQuien/archive/refs/heads/master.zip)
 - 3: Open terminal
 - 4: Get into the Dowload directory ```cd C:\{your download path}\quienEsQuien-master```
-- 5: Build image in docker ```docker-compose up --build ```
-- 6: Then we will have to run the app and migrate the ddbb ```docker-compose run web python3 manage.py migrate```
+- 5: Build image in docker ```docker-compose up ```
+- 6: Type in the browser http://localhost/ and it will show the pgAdmin web page. Thanks to this, we will be able to monitor our dockerized database.
 - 7: Type in the browser [http://localhost:8000/](http://localhost:8000/) and it will show the login template.
-- 8: You must make sure you have these 2 containers active in Docker-Desktop:
+- 8: Now, if we go to the docker application, we will notice that 3 containers have been created. The first container will correspond to the database, the second to the web application and finally, the third represents the pgAdmin page that we will be able to access to monitor our database.You must make sure you have these 3 containers active in Docker-Desktop:
 
-![Docker-containers](/DockerImages/Contenedores_activos.PNG "Register")
+![Docker-containers](/DockerImages/Contenedores_activos.PNG "Docker-containers")
 
-- 9: You must make sure you have these 2 images active in Docker-Desktop:
-
-![Docker-images](/DockerImages/Imagenes_Uso.PNG "Register")
 
