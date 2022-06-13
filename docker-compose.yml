@@ -2,18 +2,38 @@ version: '3'
 
 services:
   db:
+    container_name: postgresql_db
     image: 'postgres:latest'
     restart: always
+    ports:
+      - '5432:5432'
     environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
       POSTGRES_DB: quienesquien
-      POSTGRES_PASSWORD: manager
+      POSTGRES_PASSWORD: managers
+      POSTGRES_USER: postgres
+    volumes:
+      - "./sql:/docker-entrypoint-initdb.d"
+      - ~/Documents/bbdd_dockerizadas/postgres-volume1:/var/libpostgresql/data
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/quienEsquien_App
     ports:
       - '8000:8000'
     depends_on:
       - db
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - '80:80'
+    depends_on:
+      - db
+
+

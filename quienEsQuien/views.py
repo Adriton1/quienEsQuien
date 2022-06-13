@@ -84,15 +84,17 @@ def saveData(request):
         tiempos = [tiempoKeyDown, tiempoKeyPress, tiempoKeyUp]
         try:
             connection = psycopg2.connect(
-                host='localhost',
+                #host='localhost', #local
+                host='db', #App dockerizada
                 user='postgres',
                 password='manager',
-                database='quienesquien'
+                database='quienesquien',
+                port='5432'
             )
             print("Conexion con la base de datos exitosa")
             cursor = connection.cursor()
-            query = "INSERT INTO pruebasUsuarios values ('{"+userData+"}', %s)"
-            cursor.execute("SELECT * FROM pruebasUsuarios")
+            query = "INSERT INTO pruebasusuarios values ('{"+userData+"}', %s)"
+            cursor.execute("SELECT * FROM pruebasusuarios")
             cursor.execute(query, (tiempos,))
             connection.commit()
         except Exception as ex:
