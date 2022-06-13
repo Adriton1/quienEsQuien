@@ -114,6 +114,6 @@ To run the app we will have to dockerized it. Follow the next steps to do it.
 - 7: Type in the browser [http://localhost:8000/](http://localhost:8000/) and it will show the login template.
 - 8: Now, if we go to the docker application, we will notice that 3 containers have been created. The first container will correspond to the database, the second to the web application and finally, the third represents the pgAdmin page that we will be able to access to monitor our database.You must make sure you have these 3 containers active in Docker-Desktop:
 
-![Docker-containers](/DockerImages/Contenedores_activos.PNG "Docker-containers")
+![Docker-containers](/DockerImages/Contenedores_activos.png "Docker-containers")
 
 
