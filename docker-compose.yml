@@ -8,9 +8,8 @@ services:
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
       POSTGRES_DB: quienesquien
-      POSTGRES_PASSWORD: managers
+      POSTGRES_PASSWORD: manager
       POSTGRES_USER: postgres
     volumes:
       - "./sql:/docker-entrypoint-initdb.d"
