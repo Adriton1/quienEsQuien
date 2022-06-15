@@ -36,46 +36,6 @@ from .models import *
 # except Exception as ex:
 #     print(ex)
 
-usersPrediction, timesPrediction, H1Prediction, H2Prediction, HPPrediction, PHPrediction, PPPrediction, HHPrediction = [], [], [], [], [], [], [], []
-
-try:
-    connection = psycopg2.connect(  # nos conectamos a la bbdd
-        host='localhost',  # local
-        # host='db', #App dockerizada
-        user='postgres',
-        password='manager',
-        database='quienesquien',
-        port='5432'
-    )
-    print("Conexion con la base de datos exitosa")
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM pruebapreprocesado")  # ejecutamos la query que nos devolvera los valores: username, tiempos, H1, H2, HP, PH, PP, HH y los almacenaremos en los arrays anteriormente definidos
-    rows = cursor.fetchall()
-    for row in rows:
-        usersPrediction.append(row[0])
-        timesPrediction.append(row[1])
-        H1Prediction.append(row[2])
-        H2Prediction.append(row[3])
-        HPPrediction.append(row[4])
-        PHPrediction.append(row[5])
-        PPPrediction.append(row[6])
-        HHPrediction.append(row[7])
-
-    print(usersPrediction)
-    print(timesPrediction)
-    print(H1Prediction)
-    print(H2Prediction)
-    print(HPPrediction)
-    print(PHPrediction)
-    print(PPPrediction)
-    print(HHPrediction)
-
-    # Cerramos la conexion con la bbdd
-    cursor.close()
-    connection.close()
-
-except Exception as ex:
-    print(ex)  # si salta una excepcion la mostramos
 
 def left(request):
     currentUser = request.user
@@ -87,11 +47,14 @@ def prediccion(request): # Vista encargada de mostrar el template de prediccion
 def introduccion(request): # Vista encargada de mostrar el template de introduccion
     return render(request, 'partials/Introduccion.html', {})
 
+def recogidaDatos(request): # Vista encargada de mostrar el template de introduccion
+    return render(request, 'partials/Recogida_Datos.html', {})
 
 def explicatividad(request): # Vista encargada de mostrar el template de explicatividad
     return render(request, 'partials/Explicatividad.html', {})
 
-# def getDataPrediction():
+# def getDataPrediction(table): # Funcion que nos devolvera los datos de la prediccion del usuario
+#     usersPrediction, timesPrediction, H1Prediction, H2Prediction, HPPrediction, PHPrediction, PPPrediction, HHPrediction = [], [], [], [], [], [], [], []
 #     try:
 #         connection = psycopg2.connect(  # nos conectamos a la bbdd
 #             host='localhost',  # local
@@ -103,17 +66,26 @@ def explicatividad(request): # Vista encargada de mostrar el template de explica
 #         )
 #         print("Conexion con la base de datos exitosa")
 #         cursor = connection.cursor()
-#         cursor.execute("SELECT * FROM pruebapreprocesado")  # ejecutamos la query y le pasamos los valores tiempos, H1, H2, HP, PH, PP, HH (estos valores corresponderan a cada %s que tenga la query)
+#         cursor.execute("SELECT * FROM "+table+"")  # ejecutamos la query que nos devolvera los valores: username, tiempos, H1, H2, HP, PH, PP, HH y los almacenaremos en los arrays anteriormente definidos
 #         rows = cursor.fetchall()
 #         for row in rows:
-#             print(row)
+#             usersPrediction.append(row[0])
+#             timesPrediction.append(row[1])
+#             H1Prediction.append(row[2])
+#             H2Prediction.append(row[3])
+#             HPPrediction.append(row[4])
+#             PHPrediction.append(row[5])
+#             PPPrediction.append(row[6])
+#             HHPrediction.append(row[7])
 #
+#         return usersPrediction, timesPrediction, H1Prediction, H2Prediction, HPPrediction, PHPrediction, PPPrediction, HHPrediction
 #         # Cerramos la conexion con la bbdd
 #         cursor.close()
 #         connection.close()
 #
 #     except Exception as ex:
 #         print(ex)  # si salta una excepcion la mostramos
+#
 
 def convertData(result): # funcion que se encargara de calcular los tiempos
     contador = 0
@@ -159,6 +131,35 @@ def convertData(result): # funcion que se encargara de calcular los tiempos
     return tiempos, H1, H2, HP, PH, PP, HH
 
 
+def saveRecogidaDatos(request): # vista a la que se hara la peticion POST desde el archivo mecanografia.js. Esta vista no devolvera ningun template
+    if request.method == 'POST': #Comprobamos que la peticion que se ha hecho es POST
+        userData = request.POST['userData'] # almacenamos en la var userData el valor que tenga la var userData de nuestro archivo mecanografia.js
+        tiemposData = request.POST['tiemposData'] # almacenamos en la var tiemposData el valor que tenga la var tiemposData de nuestro archivo mecanografia.js
+        result = json.loads(tiemposData) # parseamos el valor que contenga la var tiemposData a json y lo almacenamos en la var result
+        tiempos, H1, H2, HP, PH, PP, HH = convertData(result) # Llamamos a la funcion convertData() y le pasamos como parametro de entrada la var result que contendra los tiempos en formato json. Almacenamos los datos en las variables tiempos, H1, H2, HP, PH, PP, HH
+        try:
+            connection = psycopg2.connect( #nos conectamos a la bbdd
+                host='localhost', #local
+                #host='db', #App dockerizada
+                user='postgres',
+                password='manager',
+                database='quienesquien',
+                port='5432'
+            )
+            print("Conexion con la base de datos exitosa")
+            cursor = connection.cursor()
+            query = ("INSERT INTO preprocesadorecogida VALUES('"+userData+"', %s, %s, %s, %s, %s, %s, %s)") # predefinimos la query que se encargara de insertar los datos en la tabla de nuestra bbdd
+            cursor.execute(query, (tiempos, H1, H2, HP, PH, PP, HH)) # ejecutamos la query y le pasamos los valores tiempos, H1, H2, HP, PH, PP, HH (estos valores corresponderan a cada %s que tenga la query)
+            connection.commit() # llamamos a la funcion commit que almacenara de manera persistente los datos en la tabla
+
+            # Cerramos la conexion con la bbdd
+            cursor.close()
+            connection.close()
+
+        except Exception as ex:
+            print(ex) # si salta una excepcion la mostramos
+        return JsonResponse({"message": "Recieve..."})
+
 
 def saveData(request): # vista a la que se hara la peticion POST desde el archivo mecanografia.js. Esta vista no devolvera ningun template
     if request.method == 'POST': #Comprobamos que la peticion que se ha hecho es POST
@@ -177,7 +178,7 @@ def saveData(request): # vista a la que se hara la peticion POST desde el archiv
             )
             print("Conexion con la base de datos exitosa")
             cursor = connection.cursor()
-            query = ("INSERT INTO pruebapreprocesado VALUES('"+userData+"', %s, %s, %s, %s, %s, %s, %s)") # predefinimos la query que se encargara de insertar los datos en la tabla de nuestra bbdd
+            query = ("INSERT INTO preprocesadoprediccion VALUES('"+userData+"', %s, %s, %s, %s, %s, %s, %s)") # predefinimos la query que se encargara de insertar los datos en la tabla de nuestra bbdd
             cursor.execute(query, (tiempos, H1, H2, HP, PH, PP, HH)) # ejecutamos la query y le pasamos los valores tiempos, H1, H2, HP, PH, PP, HH (estos valores corresponderan a cada %s que tenga la query)
             connection.commit() # llamamos a la funcion commit que almacenara de manera persistente los datos en la tabla
 

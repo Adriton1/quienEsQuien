@@ -12,6 +12,10 @@
                                 Introducci&oacute;n
                             </a>
                             {% if user.is_authenticated %}
+                            <a class="nav-link {% if request.path == '/recogida_Datos/' %}active{% endif %}" href="{% url 'recogidaDatos' %}">
+                                <div class="sb-nav-link-icon"><i></i></div>
+                                Recogida de datos
+                            </a>
                             <a class="nav-link {% if request.path == '/prediccion/' %}active{% endif %}" href="{% url 'prediccion' %}">
                                 <div class="sb-nav-link-icon"><i></i></div>
                                 Predicci&oacute;n

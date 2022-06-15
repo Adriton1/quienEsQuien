@@ -1,0 +1,36 @@
+{% extends '../base.html' %}
+
+{% block title %} Recogida de datos {% endblock %}
+
+{% block content %}
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Recogida de datos</h1>
+    </div>
+    <div>
+    </div>
+    <br>
+    <div class="card" style= "margin-left: 2%;height: 80px; width: 80%">
+        <div class="card-body">
+            De vez en cuando, una nueva tecnología, un antiguo problema y una gran idea se convierten en una innovación.
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="card" style= "height: 80px;width: 80%; margin-left: 2%">
+        <div id="text_in_Recogida" class="card-body">
+
+        </div>
+    </div>
+    <br>
+    <div>
+        <form action="#" id="saveRecogidaDatos">
+        {% csrf_token %}
+            <button id="botonRecogidaDatos" onclick="iniciarRecogida()" style="margin-left: 71%; float: left" type="button" class="btn btn-success">Iniciar Prueba</button>
+            <button id="botonEnviarRecogidaDatos" type="button" class="btn btn-light disabled">
+                <input onclick="finalizarRecogidaDatos()" type="submit" value="Enviar">
+            </button>
+        </form>
+    </div>
+
+{% endblock %}
