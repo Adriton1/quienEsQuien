@@ -6,6 +6,7 @@ var contadorKeyDown = 0;
 var contadorKeyPress = 0;
 var errores = 0;
 const text_in = document.getElementById('text_in');
+const botonEnviarPrediccion = document.getElementById('botonEnviarPrediccion');
 var tildeKeyUp = false;
 var tildeKeyDown = false;
 var tildeKeyPress = false;
@@ -103,7 +104,7 @@ function iniciarPrueba() {
 
         }
 
-        if(evento.key === 'Dead' && (contadorKeyUp === 22 || contadorKeyUp === 93)){ //comprobamos que para poner la tilde pulsa la tecla Dead y que estamos en la posicion que nos interesa
+        if((evento.key === 'Dead' || evento.key === '´') && (contadorKeyUp === 22 || contadorKeyUp === 93)){ //comprobamos que para poner la tilde pulsa la tecla Dead y que estamos en la posicion que nos interesa
             tildeKeyUp = true;
             errores --;
         }
@@ -113,6 +114,7 @@ function iniciarPrueba() {
         if (contadorKeyUp === texto.length){ //Hemos terminado de escribir la cadena de texto
             console.log( "Has cometido: " +errores + " errores");
             console.log(tiempos);
+            botonEnviarPrediccion.classList.remove("disabled")
         }
     });
 
