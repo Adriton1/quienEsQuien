@@ -1,6 +1,6 @@
-//var texto = "En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que viv´ia un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres cuartas partes de su hacienda."
-//var texto = "Hola buenas tardes.";
-var texto = "Adrián";
+//var texto = "En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres cuartas partes de su hacienda."
+var texto = "Esta que llaman por ahí Fortuna es una mujer borracha y antojadiza, y sobre todo, ciega, y así no ve lo que hace, ni sabe a quien derriba." //tilde en la 22
+//var texto = "Adrián";
 var contadorKeyUp = 0;
 var contadorKeyDown = 0;
 var contadorKeyPress = 0;
@@ -24,34 +24,31 @@ function iniciarPrueba() {
             if(contadorKeyDown===0){
                 primeraLetra = true;
             }
-            tiempos[0].push(evento.timeStamp / segundo);
 
             if(!tildeKeyDown){
                 text_in.textContent = text_in.textContent + texto[contadorKeyDown];
+                contadorKeyDown++;
+                tiempos[0].push(evento.timeStamp / segundo);
             }
 
             console.log("Exito");
-            contadorKeyDown++;
 
         }
 
 
-        if(evento.key == 'a' && contadorKeyDown === 4){
+        if((evento.key == 'i'|| evento.key == 'í') && (contadorKeyDown === 22 || contadorKeyDown === 93)){
             if(tildeKeyDown){
-                if(evento.key == 'a'){
-                    text_in.textContent = text_in.textContent + '\u00E1';
-                    tiempos[0].push(evento.timeStamp / segundo);
-                }
+                text_in.textContent = text_in.textContent + '\u00ED';
+                tiempos[0].push(evento.timeStamp / segundo);
                 tildeKeyDown = false;
                 contadorKeyDown++;
             }
 
         }
 
-        if(evento.key === 'Dead' && contadorKeyDown === 4){
+        if((evento.key === 'Dead' || evento.key === '´') && (contadorKeyDown === 22 || contadorKeyDown === 93)){
             tildeKeyDown = true;
             tildeKeyPress = true;
-
         }
 
         console.log(evento.key);
@@ -66,11 +63,9 @@ function iniciarPrueba() {
             contadorKeyPress++;
         }
 
-        if(evento.key == 'a' && contadorKeyPress === 4){
+        if((evento.key == 'i'|| evento.key == 'í') && (contadorKeyPress === 22 || contadorKeyPress === 93)){
             if(tildeKeyPress){
-                if(evento.key == 'a'){
-                    tiempos[1].push(evento.timeStamp / segundo);
-                }
+                tiempos[1].push(evento.timeStamp / segundo);
                 tildeKeyPress = false;
                 contadorKeyPress++;
             }
@@ -89,7 +84,7 @@ function iniciarPrueba() {
             }
         }
 
-        if(evento.key == texto[contadorKeyUp] || primeraLetra){
+        if(evento.key == texto[contadorKeyUp] || primeraLetra || contadorKeyDown === 25){
             if(contadorKeyUp === 0){
                 primeraLetra = false;
             }
@@ -98,11 +93,9 @@ function iniciarPrueba() {
             contadorKeyUp++;
         }
 
-        if(evento.key == 'a' && contadorKeyUp === 4){
+        if((evento.key == 'i'|| evento.key == 'í') && (contadorKeyUp === 22 || contadorKeyUp === 93)){
             if(tildeKeyUp){
-                if(evento.key == 'a'){
-                    tiempos[2].push(evento.timeStamp / segundo);
-                }
+                tiempos[2].push(evento.timeStamp / segundo);
                 tildeKeyUp = false;
                 contadorKeyUp++;
                 errores --;
@@ -110,7 +103,7 @@ function iniciarPrueba() {
 
         }
 
-        if(evento.key === 'Dead' && contadorKeyUp === 4){ //comprobamos que para poner la tilde pulsa la tecla Dead y que estamos en la posicion que nos interesa
+        if(evento.key === 'Dead' && (contadorKeyUp === 22 || contadorKeyUp === 93)){ //comprobamos que para poner la tilde pulsa la tecla Dead y que estamos en la posicion que nos interesa
             tildeKeyUp = true;
             errores --;
         }
@@ -118,8 +111,6 @@ function iniciarPrueba() {
         console.log(evento.key);
 
         if (contadorKeyUp === texto.length){ //Hemos terminado de escribir la cadena de texto
-            //console.log(User.getNombreUsuario())
-            //console.log(nombreUsuario.textContent);
             console.log( "Has cometido: " +errores + " errores");
             console.log(tiempos);
         }
