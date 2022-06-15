@@ -9,8 +9,8 @@ https://trello.com/b/Q4gxKaU5/tfg
 
 ### MODELS:
 - **User:** model made to contain the client data.
-- **User prediction:** model that contains all the data related to the user prediction, How long did it take the user to perform the test?, How many times did the user press the Key-Back?, How many times did the user press the Key-Space?, ...
-
+- **User prediction:** model that contains all the data related to the user prediction, How long did it take the user to perform the test?, How many times did the user press the wrong key, the time difference between two keys (keyA and key B): KeyUpA - KeyDownA, KeyUpB - KeyDownB, KeyDownB - KeyUpA,
+- KeyUpB - KeyDownA, KeyDownB - KeyDownA and KeyUpB - KeyUpA.
 ### USER TYPES:
 - **Guest User:** Unregistered users will be able to navigate throughout the web page to see the app but, they wont be allowed to make the prediction (This template will be hide for this users).
 - **Registered user:** The registered user will be able to perform everything the guest user can do, plus being able to make the prediction (This template will be showed to the registered users).
