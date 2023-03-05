@@ -110,7 +110,7 @@ To run the app we will have to dockerized it. Follow the next steps to do it.
 - 3: Open terminal
 - 4: Get into the Dowload directory ```cd C:\{your download path}\quienEsQuien-master```
 - 5: Build image in docker ```docker-compose up ```
-- 6: Type in the browser http://localhost/ and it will show the pgAdmin web page. Thanks to this, we will be able to monitor our dockerized database.
+- 6: Type in the browser http://localhost/ and it will show the pgAdmin web page. Thanks to this, we will be able to monitor our dockerized database. We will have a defined email (admin@admin.com) and password (admin) to access.
 - 7: Type in the browser [http://localhost:8000/](http://localhost:8000/) and it will show the login template.
 - 8: Now, if we go to the docker application, we will notice that 3 containers have been created. The first container will correspond to the database, the second to the web application and finally, the third represents the pgAdmin page that we will be able to access to monitor our database.You must make sure you have these 3 containers active in Docker-Desktop:
 
