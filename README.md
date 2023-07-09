@@ -7,10 +7,12 @@ Adrián López Couso | adrianlopezcouso@gmail.com | Adriton1 | https://www.linke
 ### COORDINATION APP:
 https://trello.com/b/Q4gxKaU5/tfg
 
+### IMPORTANT:
+It is very important to run the application in Chrome browser, this browser supports all the necessary functions and events.
+
 ### MODELS:
 - **User:** model made to contain the client data.
-- **User prediction:** model that contains all the data related to the user prediction, How long did it take the user to perform the test?, How many times did the user press the wrong key, the time difference between two keys (keyA and key B): KeyUpA - KeyDownA, KeyUpB - KeyDownB, KeyDownB - KeyUpA,
-- KeyUpB - KeyDownA, KeyDownB - KeyDownA and KeyUpB - KeyUpA.
+- **User prediction:** model that contains all the data related to the user prediction, How long did it take the user to perform the test?, How many times did the user press the wrong key, the time difference between two keys (keyA and key B): KeyUpA - KeyDownA, KeyUpB - KeyDownB, KeyDownB - KeyUpA, KeyUpB - KeyDownA, KeyDownB - KeyDownA and KeyUpB - KeyUpA.
 ### USER TYPES:
 - **Guest User:** Unregistered users will be able to navigate throughout the web page to see the app but, they wont be allowed to make the prediction (This template will be hide for this users).
 - **Registered user:** The registered user will be able to perform everything the guest user can do, plus being able to make the prediction (This template will be showed to the registered users).
@@ -116,4 +118,5 @@ To run the app we will have to dockerized it. Follow the next steps to do it.
 
 ![Docker-containers](/DockerImages/Contenedores_activos.png "Docker-containers")
 
+- 9: If you have any problems running the containers, try running the following commands: 1. docker rmi -f $(docker images -aq) | 2. docker build . | 3. docker compose up
 
