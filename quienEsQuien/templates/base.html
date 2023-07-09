@@ -23,7 +23,8 @@
             {% include 'left-navbar/left.html' %}
             <div id="layoutSidenav_content">
                 <main>
-                    {% if messages %}
+                <div>
+                  {% if messages %}
                         {% for message in messages %}
                             <div class="alert alert-success" role="alert">
                                 {{ message }}
@@ -32,6 +33,7 @@
                     {% endif %}
                     {% block content %}
                     {% endblock %}
+                </div>
                 </main>
                 {% include 'bottom-navbar/bottom.html' %}
             </div>

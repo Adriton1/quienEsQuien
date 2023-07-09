@@ -1,4 +1,5 @@
-var texto_Recogida = "De vez en cuando, una nueva tecnología, un antiguo problema y una gran idea se convierten en una innovación." //tilde en la 36 y 105
+
+const texto_Recogida = document.getElementById('textoRecogida')
 var contadorKeyUp = 0;
 var contadorKeyDown = 0;
 var contadorKeyPress = 0;
@@ -11,7 +12,6 @@ var tildeKeyPress = false;
 var primeraLetra = false;
 const idNombre_Recogida = document.getElementById('nombreUsuario');
 var username =  idNombre_Recogida.textContent.replace(/\s+/g, '')
-
 const segundo_Recogida = 1000;
 var tiempos = [[], [], []]
 
@@ -21,13 +21,13 @@ function iniciarRecogida() {
     // Comenzamos KEYDOWN
     document.addEventListener('keydown', function(evento){
 
-        if(evento.key == texto_Recogida[contadorKeyDown]){
+        if(evento.key == texto_Recogida.outerText[contadorKeyDown]){
             if(contadorKeyDown===0){
                 primeraLetra = true;
             }
 
             if(!tildeKeyDown){
-                text_in_Recogida.textContent = text_in_Recogida.textContent + texto_Recogida[contadorKeyDown];
+                text_in_Recogida.textContent = text_in_Recogida.textContent + texto_Recogida.outerText[contadorKeyDown];
                 contadorKeyDown++;
                 tiempos[0].push(evento.timeStamp / segundo_Recogida);
             }
@@ -66,10 +66,12 @@ function iniciarRecogida() {
     // Comenzamos KEYPRESS
     document.addEventListener('keypress', function(evento){
 
-        if(evento.key == texto_Recogida[contadorKeyPress]){
-            tiempos[1].push(evento.timeStamp / segundo_Recogida);
-            console.log("Exito");
-            contadorKeyPress++;
+        if(evento.key == texto_Recogida.outerText[contadorKeyPress]){
+            if(!tildeKeyPress){
+                tiempos[1].push(evento.timeStamp / segundo_Recogida);
+                console.log("Exito");
+                contadorKeyPress++;
+            }
         }
 
         if((evento.key == 'i'|| evento.key == 'í') && contadorKeyPress === 36 ){
@@ -95,14 +97,14 @@ function iniciarRecogida() {
     // Comenzamos KEYUP
     document.addEventListener('keyup', function(evento){
 
-        if(!(evento.key == texto_Recogida[contadorKeyUp])){
+        if(!(evento.key == texto_Recogida.outerText[contadorKeyUp])){
             errores ++;
             if(evento.key == 'Meta' || evento.key == 'Shift' || evento.key == 'CapsLock'){ // Detectamos los casos base Meta -> Inicio y,  Shift y  -> al hacer la mayuscula
                 errores --;
             }
         }
 
-        if(evento.key == texto_Recogida[contadorKeyUp] || primeraLetra){
+        if(evento.key == texto_Recogida.outerText[contadorKeyUp] || primeraLetra){
             if(contadorKeyUp === 0){
                 primeraLetra = false;
             }
@@ -116,7 +118,6 @@ function iniciarRecogida() {
                 tiempos[2].push(evento.timeStamp / segundo_Recogida);
                 tildeKeyUp = false;
                 contadorKeyUp++;
-                errores --;
             }
         }
 
@@ -125,7 +126,6 @@ function iniciarRecogida() {
                 tiempos[2].push(evento.timeStamp / segundo_Recogida);
                 tildeKeyUp = false;
                 contadorKeyUp++;
-                errores --;
             }
         }
 
@@ -136,7 +136,7 @@ function iniciarRecogida() {
 
         console.log(evento.key);
 
-        if (contadorKeyUp === texto_Recogida.length){ //Hemos terminado de escribir la cadena de texto
+        if (contadorKeyUp === texto_Recogida.outerText.length){ //Hemos terminado de escribir la cadena de texto
             console.log( "Has cometido: " +errores + " errores");
             console.log(tiempos);
             botonEnviarRecogidaDatos.classList.remove("disabled")

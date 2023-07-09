@@ -1,6 +1,5 @@
-//var texto = "En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lantejas los viernes, algún palomino de añadidura los domingos, consumían las tres cuartas partes de su hacienda."
-var texto = "Esta que llaman por ahí Fortuna es una mujer borracha y antojadiza, y sobre todo, ciega, y así no ve lo que hace, ni sabe a quien derriba." //tilde en la 22
-//var texto = "Adrián";
+var texto = "De vez en cuando, una nueva tecnología, un antiguo problema y una gran idea se convierten en una innovación.";
+//const texto = document.getElementById('textoPrediccion')
 var contadorKeyUp = 0;
 var contadorKeyDown = 0;
 var contadorKeyPress = 0;
@@ -19,6 +18,8 @@ var tiempos = [[], [], []]
 
 
 function iniciarPrueba() {
+
+    // Comenzamos KEYDOWN
     document.addEventListener('keydown', function(evento){
 
         if(evento.key == texto[contadorKeyDown]){
@@ -36,18 +37,25 @@ function iniciarPrueba() {
 
         }
 
-
-        if((evento.key == 'i'|| evento.key == 'í') && (contadorKeyDown === 22 || contadorKeyDown === 93)){
+        if((evento.key == 'i'|| evento.key == 'í') && contadorKeyDown === 36 ){
             if(tildeKeyDown){
                 text_in.textContent = text_in.textContent + '\u00ED';
                 tiempos[0].push(evento.timeStamp / segundo);
                 tildeKeyDown = false;
                 contadorKeyDown++;
             }
-
         }
 
-        if((evento.key === 'Dead' || evento.key === '´') && (contadorKeyDown === 22 || contadorKeyDown === 93)){
+        if((evento.key == 'o'|| evento.key == 'ó') && contadorKeyDown === 105 ){
+            if(tildeKeyDown){
+                text_in.textContent = text_in.textContent + '\u00F3';
+                tiempos[0].push(evento.timeStamp / segundo);
+                tildeKeyDown = false;
+                contadorKeyDown++;
+            }
+        }
+
+        if((evento.key === 'Dead' || evento.key === '´') && (contadorKeyDown === 36 || contadorKeyDown === 105)){
             tildeKeyDown = true;
             tildeKeyPress = true;
         }
@@ -55,7 +63,8 @@ function iniciarPrueba() {
         console.log(evento.key);
     });
 
-    //KeyPress
+
+    // Comenzamos KEYPRESS
     document.addEventListener('keypress', function(evento){
 
         if(evento.key == texto[contadorKeyPress]){
@@ -64,18 +73,27 @@ function iniciarPrueba() {
             contadorKeyPress++;
         }
 
-        if((evento.key == 'i'|| evento.key == 'í') && (contadorKeyPress === 22 || contadorKeyPress === 93)){
+        if((evento.key == 'i'|| evento.key == 'í') && contadorKeyPress === 36 ){
             if(tildeKeyPress){
                 tiempos[1].push(evento.timeStamp / segundo);
                 tildeKeyPress = false;
                 contadorKeyPress++;
             }
+        }
 
+        if((evento.key == 'o'|| evento.key == 'ó') && contadorKeyPress === 105 ){
+            if(tildeKeyPress){
+                tiempos[1].push(evento.timeStamp / segundo);
+                tildeKeyPress = false;
+                contadorKeyPress++;
+            }
         }
         console.log(evento.key);
     });
 
-    //KeyUp
+
+
+    // Comenzamos KEYUP
     document.addEventListener('keyup', function(evento){
 
         if(!(evento.key == texto[contadorKeyUp])){
@@ -85,7 +103,7 @@ function iniciarPrueba() {
             }
         }
 
-        if(evento.key == texto[contadorKeyUp] || primeraLetra || contadorKeyDown === 25){
+        if(evento.key == texto[contadorKeyUp] || primeraLetra){
             if(contadorKeyUp === 0){
                 primeraLetra = false;
             }
@@ -94,17 +112,25 @@ function iniciarPrueba() {
             contadorKeyUp++;
         }
 
-        if((evento.key == 'i'|| evento.key == 'í') && (contadorKeyUp === 22 || contadorKeyUp === 93)){
+        if((evento.key == 'i'|| evento.key == 'í') && contadorKeyUp === 36 ){
             if(tildeKeyUp){
                 tiempos[2].push(evento.timeStamp / segundo);
                 tildeKeyUp = false;
                 contadorKeyUp++;
                 errores --;
             }
-
         }
 
-        if((evento.key === 'Dead' || evento.key === '´') && (contadorKeyUp === 22 || contadorKeyUp === 93)){ //comprobamos que para poner la tilde pulsa la tecla Dead y que estamos en la posicion que nos interesa
+        if((evento.key == 'o'|| evento.key == 'ó') && contadorKeyUp === 105 ){
+            if(tildeKeyUp){
+                tiempos[2].push(evento.timeStamp / segundo);
+                tildeKeyUp = false;
+                contadorKeyUp++;
+                errores --;
+            }
+        }
+
+        if((evento.key === 'Dead' || evento.key === '´') && (contadorKeyUp === 36 || contadorKeyUp === 105)){ //comprobamos que para poner la tilde pulsa la tecla Dead y que estamos en la posicion que nos interesa
             tildeKeyUp = true;
             errores --;
         }
@@ -117,7 +143,6 @@ function iniciarPrueba() {
             botonEnviarPrediccion.classList.remove("disabled")
         }
     });
-
 }
 
 function finalizarPrueba() {

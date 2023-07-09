@@ -11,8 +11,8 @@
 
     <br>
     <div class="card" style= "margin-left: 2%;height: 80px; width: 80%">
-        <div class="card-body">
-            Esta que llaman por ahí Fortuna es una mujer borracha y antojadiza, y sobre todo, ciega, y así no ve lo que hace, ni sabe a quien derriba.
+        <div id="textoPrediccion" class="card-body">
+            De vez en cuando, una nueva tecnología, un antiguo problema y una gran idea se convierten en una innovación.
         </div>
     </div>
     <br>
@@ -25,13 +25,22 @@
     </div>
     <br>
     <div>
-        <form action="#" id="saveData">
+        <form action="#" id="saveData" style="margin-right: 70px">
         {% csrf_token %}
             <button id="botonPrueba" onclick="iniciarPrueba()" style="margin-left: 71%; float: left" type="button" class="btn btn-success">Iniciar Prueba</button>
             <button id="botonEnviarPrediccion" type="button" class="btn btn-light disabled">
                 <input onclick="finalizarPrueba()" type="submit" value="Enviar">
             </button>
+            <button onClick="window.location.reload();">Ver Resultado</button>
         </form>
     </div>
+    <div style="margin-left: 20px">
+        <h5>INSTRUCCIONES</h5>
+        <p>    1. El usuario deberá clicar en el botón de <b>"Iniciar Prueba"</b>. Una vez pulsado, la prueba habrá empezado y deberá escribir correctamente la frase que se encuentra en el recuadro superior.</p>
+        <p>    2. Se escribirán en el recuadro inferior <b>solo</b> las letras que concuerden con el caracter y la posición que corresponden, por lo que se deberá estar <b>atento a lo que estamos escribiendo</b>.</p>
+        <p>    3. Una vez hayamos terminado la prueba se habilitará pulsar el botón <b>"Enviar"</b>, esto dará nuestra prueba como finalizada.</p>
+        <p>    4. Para mostrar el resultado del modelo de predicción deberemos pulsar el botón <b>"Ver Resultado"</b>.</p>
+    </div>
+
 
 {% endblock %}

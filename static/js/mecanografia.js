@@ -45,7 +45,6 @@ var tiempos = [[], [], []]
 
 function iniciarPrueba() {
     document.addEventListener('keydown', function(evento){
-
         if(evento.key == texto[contadorKeyDown]){
             if(contadorKeyDown===0){
                 primeraLetra = true;

@@ -1,13 +1,7 @@
-FROM python:3.9.13-alpine3.16
+FROM python:3.8.2-slim-buster
 
-RUN apk update && apk upgrade \
-    && apk add postgresql-client \
-        postgresql-dev \
-        musl-dev \
-        gcc \
-        linux-headers \
-        gettext-dev \
-    && pip install pipenv
+RUN apt-get update && apt-get -y install libpq-dev gcc
+
 
 RUN mkdir /quienEsquien_App
 
@@ -15,7 +9,10 @@ WORKDIR /quienEsquien_App
 
 COPY requirements.txt /quienEsquien_App/
 
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+
 COPY . /quienEsquien_App/
+
 
